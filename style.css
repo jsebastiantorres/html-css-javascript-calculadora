@@ -1,3 +1,55 @@
 .display{
+    height: 80%;
+    width: 40%;
     text-align: end;
+    font-size: 40px; 
+}
+
+button {
+    width: 10%;
+    padding: 4%;
+    font-size: 20px; 
+    border: none;
+}
+
+button:hover {
+    background-color: rgb(74, 233, 212);
+    border: none;
+}
+
+.calculadora {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0, auto;
+}
+
+div.output{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#clean{
+    background-color: rgb(112, 245, 227);
+}
+
+#igual{
+    background-color: rgb(116, 241, 112);
+}
+
+#clean:hover{
+    background-color: rgb(1, 241, 209);
+}
+
+#igual:hover{
+    background-color: rgb(34, 245, 27);
 }

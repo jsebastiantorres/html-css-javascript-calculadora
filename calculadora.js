@@ -1,104 +1,63 @@
 const botonNumeros = document.getElementsByName('number');
 const botonOperadores = document.getElementsByName('operador');
 
-/*
-const botonSumar = document.getElementById('sumar');
-const botonRestar = document.getElementById('restar');
-const botonMultiplicar = document.getElementById('multiplicar');
-const botonDividir = document.getElementById('dividir');
-*/
-
-
 const botonIgual = document.getElementById('igual');
 const botonClean = document.getElementById('clean');
 
 var resultado = document.getElementById('resultado');
 
-var operacionActual = ""
-var operacionAnterior = ""
-var operacion = "undefined"
+var valorActual = "";
+var valorAnterior = "";
+var operacion = "undefined";
 
-botonNumeros.forEach(function(boton){
+
+//Selecciona de los numeros 
+botonNumeros.forEach(boton =>{
     boton.addEventListener('click', function(){
         agregarNumero(boton.innerText);
     })
 });
 
+
+//Agrega el Numero clickeado al Display - Numero a texto 
+function agregarNumero(num) {
+    valorActual = valorActual.toString() + num.toString();
+    actualizarDisplay();
+}
+
+
+//Selecciona de los Operadores
 botonOperadores.forEach(function(boton){
     boton.addEventListener('click', function(){
         selectOperacion(boton.innerText);
-    
     })
 });
 
-/*//SUMAR
-botonSumar.addEventListener('click', function () {
-    selectOperacion(boton.innerText);
-});
 
-//RESTAR
-botonRestar.addEventListener('click', function () {
-    selectOperacion(boton.innerText);
-});
-
-//MULTIPLICAR
-botonMultiplicar.addEventListener('click', function () {
-    selectOperacion(boton.innerText);
-});
-
-//DIVIDIR
-botonDividir.addEventListener('click', function () {
-    selectOperacion(boton.innerText);
-});
-*/
-
-
-botonIgual.addEventListener('click', function () {
-    calcular();
-    actualizarDisplay();
-})
-
-
-botonClean.addEventListener('click', function () {
-    clear();
-    actualizarDisplay();
-});
-
-
-//agrega el numero clickeado al display - numero a texto
-function agregarNumero(num) {
-    operacionActual = operacionActual.toString() + num.toString();
-    actualizarDisplay();
-}
-
-//limpia el display 
-function clear() {
-    operacionActual = "";
-    operacionAnterior = "";
-    operacion = "undefined"
-}
-
-//Borra y escribe los nuevos valores
-function actualizarDisplay() {
-    resultado.value = operacionActual
-}
-
-
+//Selecciona (+-/*) = (op) validacion y funcion  
 function selectOperacion(op) {
-    if (operacionActual === '') return;
-    if (operacionAnterior !== '') {
+    if (valorActual === '') return;
+    if (valorAnterior !== '') {
         calcular()
     }
     operacion = op.toString();
-    operacionAnterior = operacionActual;
-    operacionActual = '';
+    valorAnterior = valorActual;
+    valorActual = '';
 }
+
+
+//Disparador
+botonIgual.addEventListener('click', function () {
+    calcular();
+    actualizarDisplay();
+});
+
 
 function calcular() {
     var calculo;
-    const anterior = parseFloat(operacionAnterior);
-    const actual = parseFloat(operacionActual);
-    if (isNaN(anterior) || isNaN(actual)) return;
+    const anterior = parseFloat(valorAnterior);
+    const actual = parseFloat(valorActual);
+    if (isNaN(anterior) || isNaN(actual)) return alert ("Digite solo números");
 
     switch (operacion){
         case '+':
@@ -116,8 +75,30 @@ function calcular() {
         default:
             return;
     }
-    operacionActual = calculo;
-    operacion = undefined;
-    operacionAnterior = '';
 
+    valorActual = calculo;
+    operacion = undefined;
+    valorAnterior = '';
+
+}
+
+
+//Borra y escribe los nuevos valores
+function actualizarDisplay() {
+    resultado.value = valorActual
+}
+
+
+//Disparador
+botonClean.addEventListener('click', function () {
+    clear();
+    actualizarDisplay();
+});
+
+
+//limpia el display 
+function clear() {
+    valorActual = "";
+    valorAnterior = "";
+    operacion = "undefined"
 }
