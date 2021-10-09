@@ -58,6 +58,7 @@ function calcular() {
     const anterior = parseFloat(valorAnterior);
     const actual = parseFloat(valorActual);
     if (isNaN(anterior) || isNaN(actual)) return alert ("Digite solo números");
+    
 
     switch (operacion){
         case '+':
